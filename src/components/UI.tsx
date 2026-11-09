@@ -143,3 +143,24 @@ export function Pill({ children, tone = 'gold' }: { children: ReactNode; tone?: 
   const t = tone === 'gold' ? 'bg-gold-500/15 text-gold-300 ring-gold-500/50' : tone === 'emerald' ? 'bg-emerald-600/20 text-emerald-400 ring-emerald-400/40' : 'bg-red-500/15 text-red-300 ring-red-400/40';
   return <span className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-extrabold ring-1 ${t}`}>{children}</span>;
 }
+
+/** Jika dibuka dalam iframe (cth. Google Sites), cadangkan buka dalam tab baharu supaya muat turun sijil & simpanan berfungsi. */
+export function EmbedNotice() {
+  let embedded = false;
+  try {
+    embedded = window.self !== window.top;
+  } catch {
+    embedded = true;
+  }
+  if (!embedded) return null;
+  return (
+    <div className="mb-4 flex flex-col items-center gap-2 rounded-2xl border border-gold-400 bg-gold-500/15 p-3 text-center text-sm text-gold-300 sm:flex-row sm:text-left" data-testid="embed-notice">
+      <span className="flex-1">
+        Anda bermain di dalam laman terbenam. Untuk memastikan sijil boleh dimuat turun dan kemajuan disimpan, buka permainan dalam tab baharu.
+      </span>
+      <a href={window.location.href} target="_blank" rel="noopener noreferrer" className="btn-gold inline-flex min-h-11 shrink-0 items-center gap-2 rounded-xl px-4 py-2 font-extrabold">
+        BUKA SKRIN PENUH <ExternalLink size={16} />
+      </a>
+    </div>
+  );
+}

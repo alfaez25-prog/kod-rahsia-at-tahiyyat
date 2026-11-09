@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { KeyRound, Play, RotateCcw, ScrollText } from 'lucide-react';
 import { useGame } from '../state/GameContext.tsx';
-import { Button, ClassroomGuide, MuteButton, Screen } from '../components/UI.tsx';
+import { Button, ClassroomGuide, EmbedNotice, MuteButton, Screen } from '../components/UI.tsx';
 import { Chest, Divider, SchoolCrest } from '../components/Decor.tsx';
 import { gameComplete } from '../lib/scoring.ts';
 
@@ -10,6 +10,7 @@ export function Landing() {
   const resume = session && progress;
   return (
     <Screen className="pt-6">
+      <EmbedNotice />
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <SchoolCrest logo={settings.logoDataUrl} size={44} />

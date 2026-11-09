@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { Download, FileImage, Loader2, Lock, Printer } from 'lucide-react';
 import { useGame } from '../state/GameContext.tsx';
-import { Button, ClassroomGuide, Screen, TopBar } from '../components/UI.tsx';
+import { Button, ClassroomGuide, EmbedNotice, Screen, TopBar } from '../components/UI.tsx';
 import { Certificate, type CertificateData } from '../components/Certificate.tsx';
 import { badges, headlineBadge, mastery, MAX_SCORE, totalScore } from '../lib/scoring.ts';
 import {
@@ -110,6 +110,7 @@ export function CertificateScreen() {
     <>
       <TopBar />
       <Screen className="max-w-5xl">
+      <EmbedNotice />
         <div className="mt-4 text-center">
           <p className="text-xs font-extrabold uppercase tracking-[0.3em] text-emerald-400">Ganjaran Misi</p>
           <h1 className="gold-text font-display text-3xl font-extrabold">Sijil Digital Anda</h1>

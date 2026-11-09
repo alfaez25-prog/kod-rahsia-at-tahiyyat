@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Benarkan laman dibenamkan dalam Google Sites (iframe)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "frame-ancestors 'self' https://sites.google.com https://*.googleusercontent.com https://classroom.google.com"
