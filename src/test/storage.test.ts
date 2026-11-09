@@ -53,9 +53,10 @@ describe('Penyimpanan setempat', () => {
 });
 
 describe('Tetapan permainan', () => {
-  it('pautan Google Classroom lalai betul', () => {
+  it('pautan Google Classroom kelas betul', () => {
     expect(CLASSROOM_URL).toBe('https://classroom.google.com/');
-    expect(SETTINGS.classroomUrl).toBe('https://classroom.google.com/');
+    expect(SETTINGS.classroomUrl).toBe('https://classroom.google.com/c/Nzg4MTkwMzYyNjg4?cjc=s4ii5xii');
+    expect(safeUrl(SETTINGS.classroomUrl)).toBe(SETTINGS.classroomUrl);
   });
   it('hanya pautan http(s) diterima', () => {
     expect(safeUrl('javascript:alert(1)')).toBe(CLASSROOM_URL);

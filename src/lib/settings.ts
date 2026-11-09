@@ -1,7 +1,10 @@
 import { DEFAULT_UNITS } from '../data/tahiyat.ts';
 import type { UnitContent } from '../data/types.ts';
+import schoolLogo from '../assets/logo-sk-bukit-minyak.svg';
 
 export const CLASSROOM_URL = 'https://classroom.google.com/';
+/** Pautan kelas Pendidikan Islam (Google Classroom) yang dibuka oleh butang BUKA GOOGLE CLASSROOM. */
+export const CLASS_CLASSROOM_URL = 'https://classroom.google.com/c/Nzg4MTkwMzYyNjg4?cjc=s4ii5xii';
 
 export const DEFAULT_SUBMISSION_TEXT =
   'Selepas tamat permainan, muat turun sijil anda dalam format PDF atau PNG. Buka Google Classroom, pilih tugasan Pendidikan Islam, lampirkan sijil dan tekan Serahkan.';
@@ -21,7 +24,7 @@ export const CLASSROOM_STEPS = [
 /** Konfigurasi permainan (tetap). Ubah nilai di sini dan bina semula untuk menukar tetapan. */
 export interface GameSettings {
   schoolName: string;
-  /** Data URL / laluan logo. Kosong = lambang lalai. */
+  /** URL logo sekolah (src/assets). Kosong = lambang lalai. */
   logoDataUrl: string;
   /** Senarai kelas; jika kosong murid menaip kelas sendiri. */
   classes: string[];
@@ -34,9 +37,9 @@ export interface GameSettings {
 
 export const SETTINGS: GameSettings = {
   schoolName: 'SK BUKIT MINYAK',
-  logoDataUrl: '',
+  logoDataUrl: schoolLogo,
   classes: [],
-  classroomUrl: CLASSROOM_URL,
+  classroomUrl: CLASS_CLASSROOM_URL,
   submissionText: DEFAULT_SUBMISSION_TEXT,
   certificateMinMastery: 0,
   units: DEFAULT_UNITS,

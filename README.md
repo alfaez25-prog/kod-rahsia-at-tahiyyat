@@ -31,6 +31,8 @@ Folder `dist/` ialah laman statik (`base: './'`) — boleh dimuat naik ke mana-m
 - Maksimum 1000. Peratus penguasaan = item betul percubaan pertama ÷ 17 (berasingan daripada XP).
 
 ## Menukar tetapan
+Logo sekolah: `src/assets/logo-sk-bukit-minyak.svg` (dilukis semula sebagai vektor; boleh diganti dengan fail logo rasmi, kemudian kemas kini import dalam `src/lib/settings.ts`).
+
 Tiada Mod Guru dalam aplikasi. Untuk menukar nama sekolah, logo, senarai kelas, pautan Classroom, arahan penghantaran atau tahap kelayakan sijil, sunting `src/lib/settings.ts`. Untuk menukar lafaz, maksud, distraktor, petunjuk atau rakaman audio, sunting `src/data/tahiyat.ts`. Kemudian jalankan `npm test` dan `npm run build` (Netlify akan build semula secara automatik selepas push ke GitHub).
 
 ## Memerlukan input guru

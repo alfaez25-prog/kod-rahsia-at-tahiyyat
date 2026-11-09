@@ -13,7 +13,7 @@ export function Landing() {
       <EmbedNotice />
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <SchoolCrest logo={settings.logoDataUrl} size={44} />
+          <SchoolCrest logo={settings.logoDataUrl} size={60} />
           <span className="font-display text-sm font-extrabold tracking-[0.2em] text-gold-300" data-testid="school-name">{settings.schoolName}</span>
         </div>
         <MuteButton />

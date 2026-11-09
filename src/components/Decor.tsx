@@ -116,7 +116,7 @@ export function ProgressBar({ value, max, label }: { value: number; max: number;
 }
 
 export function SchoolCrest({ logo, size = 56 }: { logo?: string; size?: number }) {
-  if (logo) return <img src={logo} alt="Logo sekolah" width={size} height={size} className="rounded-full object-contain" style={{ width: size, height: size }} />;
+  if (logo) return <img src={logo} alt="Logo sekolah" width={size} height={size} className="rounded-full bg-white object-contain" style={{ width: size, height: size, borderRadius: '50%' }} />;
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" role="img" aria-label="Lambang">
       <circle cx="50" cy="50" r="47" fill="#0b5242" stroke="#c9a227" strokeWidth="4" />

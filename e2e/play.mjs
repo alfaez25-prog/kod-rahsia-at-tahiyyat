@@ -195,7 +195,7 @@ async function run() {
 
     // Pautan Classroom
     const link = page.getByTestId('classroom-link');
-    check('Pautan Google Classroom betul', (await link.getAttribute('href')) === 'https://classroom.google.com/' && (await link.getAttribute('target')) === '_blank');
+    check('Pautan Google Classroom betul', (await link.getAttribute('href')) === 'https://classroom.google.com/c/Nzg4MTkwMzYyNjg4?cjc=s4ii5xii' && (await link.getAttribute('target')) === '_blank');
     const reqs = [];
     ctx.on('request', (r) => reqs.push(r.url()));
     const [popup] = await Promise.all([ctx.waitForEvent('page'), link.click()]);
