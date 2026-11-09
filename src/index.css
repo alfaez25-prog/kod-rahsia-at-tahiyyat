@@ -1,0 +1,166 @@
+@import 'tailwindcss';
+@import '@fontsource/amiri/arabic-400.css';
+@import '@fontsource/amiri/arabic-700.css';
+@import '@fontsource/amiri/latin-400.css';
+@import '@fontsource/amiri/latin-700.css';
+@import '@fontsource/cinzel/latin-600.css';
+@import '@fontsource/cinzel/latin-800.css';
+@import '@fontsource/nunito/latin-400.css';
+@import '@fontsource/nunito/latin-600.css';
+@import '@fontsource/nunito/latin-800.css';
+@import '@fontsource/nunito/latin-ext-400.css';
+
+@theme {
+  --color-emerald-950: #04241d;
+  --color-emerald-900: #073b30;
+  --color-emerald-800: #0b5242;
+  --color-emerald-700: #0f6b56;
+  --color-emerald-600: #14846a;
+  --color-emerald-400: #3fbf98;
+  --color-gold-300: #f3dc8f;
+  --color-gold-400: #e6c35c;
+  --color-gold-500: #c9a227;
+  --color-gold-600: #a6801a;
+  --color-gold-700: #7c5e12;
+  --color-ivory-50: #fffaf0;
+  --color-ivory-100: #f8f1e0;
+  --color-ivory-200: #efe2c4;
+  --color-ivory-300: #e2cfa4;
+  --color-brown-700: #5a3a22;
+  --color-brown-800: #3b2416;
+  --color-brown-900: #2a180d;
+  --color-brown-950: #1a0f08;
+  --font-arabic: 'Amiri', 'Traditional Arabic', 'Scheherazade New', serif;
+  --font-display: 'Cinzel', 'Times New Roman', serif;
+  --font-sans: 'Nunito', system-ui, sans-serif;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ivory-100);
+  background-color: var(--color-brown-950);
+  background-image:
+    radial-gradient(ellipse at 50% -10%, rgb(15 107 86 / 0.55), transparent 60%),
+    radial-gradient(ellipse at 50% 120%, rgb(201 162 39 / 0.18), transparent 55%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23c9a227' stroke-opacity='0.07' stroke-width='1'%3E%3Cpath d='M40 6 L49 31 L74 40 L49 49 L40 74 L31 49 L6 40 L31 31 Z'/%3E%3Crect x='22' y='22' width='36' height='36' transform='rotate(45 40 40)'/%3E%3Crect x='22' y='22' width='36' height='36'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+.font-arabic {
+  font-family: var(--font-arabic);
+  line-height: 2.1;
+  font-feature-settings: 'calt', 'liga';
+}
+
+.parchment {
+  color: var(--color-brown-900);
+  background:
+    radial-gradient(ellipse at 20% 10%, rgb(255 255 255 / 0.55), transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgb(166 128 26 / 0.18), transparent 55%),
+    linear-gradient(160deg, #fbf4e2 0%, #f1e3c2 55%, #e6d1a3 100%);
+  box-shadow:
+    inset 0 0 0 1px rgb(124 94 18 / 0.35),
+    inset 0 0 40px rgb(124 94 18 / 0.2),
+    0 20px 50px -20px rgb(0 0 0 / 0.7);
+}
+
+.ornate-frame {
+  position: relative;
+}
+.ornate-frame::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 2px solid rgb(201 162 39 / 0.55);
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 4px rgb(248 241 224 / 0.0), inset 0 0 0 5px rgb(201 162 39 / 0.3);
+}
+
+.gold-text {
+  background: linear-gradient(180deg, #fff3c4 0%, #e6c35c 45%, #a6801a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-gold {
+  background: linear-gradient(180deg, #f3dc8f 0%, #c9a227 55%, #a6801a 100%);
+  color: #2a180d;
+  box-shadow: 0 4px 0 #7c5e12, 0 10px 24px -8px rgb(201 162 39 / 0.6), inset 0 1px 0 rgb(255 255 255 / 0.6);
+}
+.btn-gold:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #7c5e12, inset 0 1px 0 rgb(255 255 255 / 0.6);
+}
+.btn-gold:disabled {
+  filter: grayscale(0.7) brightness(0.7);
+  cursor: not-allowed;
+}
+.btn-emerald {
+  background: linear-gradient(180deg, #14846a 0%, #0b5242 100%);
+  color: #f8f1e0;
+  box-shadow: 0 4px 0 #04241d, inset 0 1px 0 rgb(255 255 255 / 0.2);
+  border: 1px solid rgb(201 162 39 / 0.5);
+}
+.btn-emerald:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #04241d;
+}
+
+.card-3d {
+  transform-style: preserve-3d;
+  box-shadow: 0 6px 0 #a6801a, 0 12px 20px -8px rgb(0 0 0 / 0.5), inset 0 1px 0 rgb(255 255 255 / 0.8);
+}
+
+@keyframes float-up {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(-110vh) scale(0.4); opacity: 0; }
+}
+.particle {
+  position: absolute;
+  bottom: -10px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, #fff3c4, #c9a227 60%, transparent 70%);
+  animation: float-up linear infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 6px rgb(230 195 92 / 0.5)); }
+  50% { filter: drop-shadow(0 0 18px rgb(230 195 92 / 0.95)); }
+}
+.glow-pulse { animation: glow-pulse 2.4s ease-in-out infinite; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background-image: linear-gradient(90deg, transparent, rgb(255 243 196 / 0.6), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particle, .glow-pulse, .shimmer { animation: none !important; }
+}
+
+/* Cetakan: hanya imej sijil dipaparkan */
+#print-area { display: none; }
+@media print {
+  @page { size: A4 landscape; margin: 0; }
+  body { background: #fff !important; }
+  body > #root { display: none !important; }
+  #print-area { display: block !important; }
+  #print-area img { width: 297mm; height: 210mm; display: block; }
+}
