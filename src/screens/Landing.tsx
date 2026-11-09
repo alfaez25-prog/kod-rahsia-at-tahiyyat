@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { KeyRound, Play, RotateCcw, ScrollText } from 'lucide-react';
+import { Play, RotateCcw, ScrollText } from 'lucide-react';
 import { useGame } from '../state/GameContext.tsx';
 import { Button, ClassroomGuide, EmbedNotice, MuteButton, Screen } from '../components/UI.tsx';
 import { Chest, Divider, SchoolCrest } from '../components/Decor.tsx';
@@ -72,9 +72,6 @@ export function Landing() {
 
       <footer className="mt-8 flex flex-col items-center gap-2 text-center text-xs text-ivory-200/60">
         <p>Pembahagian 8 unit ialah pembahagian pembelajaran, bukan penetapan bilangan baris bacaan dalam solat.</p>
-        <button type="button" onClick={() => go({ name: 'teacher' })} className="inline-flex items-center gap-1 rounded-full px-3 py-2 text-gold-300/80 underline-offset-4 hover:underline">
-          <KeyRound size={14} /> Mod Guru
-        </button>
       </footer>
     </Screen>
   );

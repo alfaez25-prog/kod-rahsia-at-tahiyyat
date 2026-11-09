@@ -1,21 +1,18 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import {
-  addHistory,
   endSession,
   loadMuted,
   loadProgress,
   loadSession,
-  loadSettings,
   saveMuted,
   saveProgress,
-  saveSettings,
   startSession,
   type Progress,
   type Session,
   type Student,
 } from '../lib/storage.ts';
-import type { TeacherSettings } from '../lib/settings.ts';
-import { gameComplete, mastery, totalScore } from '../lib/scoring.ts';
+import { SETTINGS, type GameSettings } from '../lib/settings.ts';
+import { gameComplete } from '../lib/scoring.ts';
 import { setMuted as setAudioMuted } from '../lib/audio.ts';
 
 export type Screen =
@@ -28,14 +25,12 @@ export type Screen =
   | { name: 'feedback'; unitId: number }
   | { name: 'order' }
   | { name: 'results' }
-  | { name: 'certificate' }
-  | { name: 'teacher' };
+  | { name: 'certificate' };
 
 interface GameCtx {
   screen: Screen;
   go: (s: Screen) => void;
-  settings: TeacherSettings;
-  updateSettings: (s: TeacherSettings) => void;
+  settings: GameSettings;
   session: Session | null;
   progress: Progress | null;
   register: (s: Student) => void;
@@ -48,7 +43,7 @@ interface GameCtx {
 const Ctx = createContext<GameCtx | null>(null);
 
 export function GameProvider({ children }: { children: ReactNode }) {
-  const [settings, setSettings] = useState<TeacherSettings>(() => loadSettings());
+  const settings = SETTINGS;
   const [session, setSession] = useState<Session | null>(() => loadSession());
   const [progress, setProgress] = useState<Progress | null>(() => {
     const s = loadSession();
@@ -83,14 +78,6 @@ export function GameProvider({ children }: { children: ReactNode }) {
         let next = fn(structuredClone(prev));
         if (!next.completedAt && gameComplete(next)) {
           next = { ...next, completedAt: new Date().toISOString() };
-          addHistory({
-            sessionId: session.sessionId,
-            name: session.name,
-            className: session.className,
-            score: totalScore(next),
-            mastery: mastery(next).percent,
-            completedAt: next.completedAt!,
-          });
         }
         saveProgress(next);
         return next;
@@ -98,11 +85,6 @@ export function GameProvider({ children }: { children: ReactNode }) {
     },
     [session],
   );
-
-  const updateSettings = useCallback((s: TeacherSettings) => {
-    saveSettings(s);
-    setSettings(s);
-  }, []);
 
   const toggleMute = useCallback(() => {
     setMuted((m) => {
@@ -112,8 +94,8 @@ export function GameProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo(
-    () => ({ screen, go, settings, updateSettings, session, progress, register, logout, update, muted, toggleMute }),
-    [screen, go, settings, updateSettings, session, progress, register, logout, update, muted, toggleMute],
+    () => ({ screen, go, settings, session, progress, register, logout, update, muted, toggleMute }),
+    [screen, go, settings, session, progress, register, logout, update, muted, toggleMute],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

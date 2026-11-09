@@ -21,7 +21,7 @@ Folder `dist/` ialah laman statik (`base: './'`) — boleh dimuat naik ke mana-m
 | Sistem markah & penguasaan | `src/lib/scoring.ts` |
 | Penyimpanan localStorage | `src/lib/storage.ts` |
 | Penjanaan sijil PDF/PNG | `src/lib/certificate.ts`, `src/components/Certificate.tsx` |
-| Tetapan guru | `src/lib/settings.ts`, `src/screens/TeacherScreen.tsx` |
+| Tetapan permainan (sekolah, kelas, pautan Classroom) | `src/lib/settings.ts` |
 | Skrin permainan | `src/screens/*` |
 
 ## Markah
@@ -30,10 +30,10 @@ Folder `dist/` ialah laman statik (`base: './'`) — boleh dimuat naik ke mana-m
 - Susunan: 200 / 150 / 100 / 50, tolak 25 setiap petunjuk (min 25)
 - Maksimum 1000. Peratus penguasaan = item betul percubaan pertama ÷ 17 (berasingan daripada XP).
 
-## Mod Guru
-Pautan "Mod Guru" di bawah skrin utama. PIN lalai **1234** (sila tukar). Tetapan disimpan dalam localStorage pelayar itu sahaja; gunakan Eksport/Import JSON untuk memindahkannya. Ini bukan sistem keselamatan atau pangkalan data berpusat.
+## Menukar tetapan
+Tiada Mod Guru dalam aplikasi. Untuk menukar nama sekolah, logo, senarai kelas, pautan Classroom, arahan penghantaran atau tahap kelayakan sijil, sunting `src/lib/settings.ts`. Untuk menukar lafaz, maksud, distraktor, petunjuk atau rakaman audio, sunting `src/data/tahiyat.ts`. Kemudian jalankan `npm test` dan `npm run build` (Netlify akan build semula secara automatik selepas push ke GitHub).
 
 ## Memerlukan input guru
-- Semak lafaz, harakat, maksud dan distraktor setiap unit; tandakan "Telah disemak guru".
-- Rakaman bacaan (pilihan): masukkan pautan audio dan tandakan "Rakaman disahkan". Tanpa itu, tiada audio bacaan dimainkan (tiada TTS).
-- Logo sekolah, senarai kelas, pautan tugasan Google Classroom khusus, PIN guru, tahap kelayakan sijil.
+- Semak lafaz, harakat, maksud dan distraktor setiap unit dalam `src/data/tahiyat.ts`.
+- Rakaman bacaan (pilihan): isi `audioUrl` dan tetapkan `audioVerified: true` dalam `src/data/tahiyat.ts`. Tanpa itu, tiada audio bacaan dimainkan (tiada TTS).
+- Logo sekolah, senarai kelas, pautan tugasan Google Classroom khusus, tahap kelayakan sijil (`src/lib/settings.ts`).

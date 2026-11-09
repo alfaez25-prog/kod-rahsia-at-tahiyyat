@@ -6,7 +6,7 @@ import type { UnitContent } from './types.ts';
  * Pembahagian 8 unit ini ialah pembahagian PEDAGOGI, bukan penetapan bilangan baris dalam ibadah.
  * Unit 1–7: lafaz tasyahhud. Unit 8: tambahan selawat ke atas Nabi ﷺ yang diajarkan
  * mengikut panduan pengajaran mazhab Syafi‘i (bukan sebahagian lafaz tasyahhud itu sendiri).
- * Guru boleh menyemak dan menyunting semua kandungan di Mod Guru.
+ * Untuk menukar kandungan, sunting fail ini dan bina semula (npm run build).
  */
 export const DEFAULT_UNITS: UnitContent[] = [
   {
@@ -41,7 +41,6 @@ export const DEFAULT_UNITS: UnitContent[] = [
     },
     audioUrl: '',
     audioVerified: false,
-    reviewed: false,
   },
   {
     id: 2,
@@ -75,7 +74,6 @@ export const DEFAULT_UNITS: UnitContent[] = [
     },
     audioUrl: '',
     audioVerified: false,
-    reviewed: false,
   },
   {
     id: 3,
@@ -104,7 +102,6 @@ export const DEFAULT_UNITS: UnitContent[] = [
     },
     audioUrl: '',
     audioVerified: false,
-    reviewed: false,
   },
   {
     id: 4,
@@ -133,7 +130,6 @@ export const DEFAULT_UNITS: UnitContent[] = [
     },
     audioUrl: '',
     audioVerified: false,
-    reviewed: false,
   },
   {
     id: 5,
@@ -167,7 +163,6 @@ export const DEFAULT_UNITS: UnitContent[] = [
     },
     audioUrl: '',
     audioVerified: false,
-    reviewed: false,
   },
   {
     id: 6,
@@ -201,7 +196,6 @@ export const DEFAULT_UNITS: UnitContent[] = [
     },
     audioUrl: '',
     audioVerified: false,
-    reviewed: false,
   },
   {
     id: 7,
@@ -235,7 +229,6 @@ export const DEFAULT_UNITS: UnitContent[] = [
     },
     audioUrl: '',
     audioVerified: false,
-    reviewed: false,
   },
   {
     id: 8,
@@ -269,7 +262,6 @@ export const DEFAULT_UNITS: UnitContent[] = [
     },
     audioUrl: '',
     audioVerified: false,
-    reviewed: false,
   },
 ];
 

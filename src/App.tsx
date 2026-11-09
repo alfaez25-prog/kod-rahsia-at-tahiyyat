@@ -10,13 +10,12 @@ import { FeedbackScreen } from './screens/FeedbackScreen.tsx';
 import { OrderScreen } from './screens/OrderScreen.tsx';
 import { ResultsScreen } from './screens/ResultsScreen.tsx';
 import { CertificateScreen } from './screens/CertificateScreen.tsx';
-import { TeacherScreen } from './screens/TeacherScreen.tsx';
 import { allUnitsDone, gameComplete } from './lib/scoring.ts';
 import type { Progress } from './lib/storage.ts';
 
 /** Pastikan skrin yang diminta dibenarkan oleh kemajuan semasa (cth. tiada lompat ke sijil). */
 export function guardScreen(s: Screen, hasSession: boolean, p: Progress | null): Screen {
-  const needsSession = !['landing', 'register', 'teacher'].includes(s.name);
+  const needsSession = !['landing', 'register'].includes(s.name);
   if (needsSession && (!hasSession || !p)) return { name: 'register' };
   if (!p) return s;
   const unitOpen = (id: number) => id === 1 || !!p.units[id - 1]?.meaning.done;
@@ -53,7 +52,6 @@ function Router() {
     case 'order': view = <OrderScreen />; break;
     case 'results': view = <ResultsScreen />; break;
     case 'certificate': view = <CertificateScreen />; break;
-    case 'teacher': view = <TeacherScreen />; break;
   }
   return <div key={key}>{view}</div>;
 }

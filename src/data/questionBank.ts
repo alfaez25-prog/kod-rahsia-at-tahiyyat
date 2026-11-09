@@ -59,7 +59,7 @@ export function checkMeaning(q: MeaningQuestion, optionIdChosen: string): boolea
   return optionIdChosen === q.correctId;
 }
 
-/** Validasi bank soalan (digunakan oleh ujian, import JSON dan Mod Guru). */
+/** Validasi bank soalan (digunakan oleh ujian). */
 export function validateUnits(units: UnitContent[]): string[] {
   const errors: string[] = [];
   if (!Array.isArray(units) || units.length !== 8) {

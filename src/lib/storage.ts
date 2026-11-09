@@ -1,20 +1,15 @@
 import { emptyOrder, emptyUnit, UNIT_COUNT, type OrderRecord, type UnitRecord } from './scoring.ts';
 import { randomId } from './random.ts';
-import { cloneDefaults, parseSettings, type TeacherSettings } from './settings.ts';
 
 /**
  * PENYIMPANAN SETEMPAT (localStorage sahaja — tiada data dihantar ke pelayan luar).
  * - krat:session        → murid aktif semasa (nama, kelas, avatar, sessionId)
  * - krat:progress:<sid> → kemajuan bagi SATU sesi sahaja (tidak bercampur antara murid)
- * - krat:settings       → tetapan guru
- * - krat:history        → ringkasan keputusan tamat (untuk rujukan guru di peranti ini)
  */
 
 export const KEYS = {
   session: 'krat:session',
   progress: (sid: string) => `krat:progress:${sid}`,
-  settings: 'krat:settings',
-  history: 'krat:history',
   muted: 'krat:muted',
 } as const;
 
@@ -38,15 +33,6 @@ export interface Progress {
   units: Record<number, UnitRecord>;
   order: OrderRecord & { arrangement: number[] };
   completedAt: string | null;
-}
-
-export interface HistoryEntry {
-  sessionId: string;
-  name: string;
-  className: string;
-  score: number;
-  mastery: number;
-  completedAt: string;
 }
 
 function safeGet(key: string): string | null {
@@ -171,36 +157,6 @@ export function endSession() {
   const s = loadSession();
   if (s) safeRemove(KEYS.progress(s.sessionId));
   safeRemove(KEYS.session);
-}
-
-export function loadSettings(): TeacherSettings {
-  const raw = readJson<unknown>(KEYS.settings);
-  if (!raw) return cloneDefaults();
-  const r = parseSettings(raw);
-  return r.ok && r.settings ? r.settings : cloneDefaults();
-}
-
-export function saveSettings(s: TeacherSettings): boolean {
-  return safeSet(KEYS.settings, JSON.stringify(s));
-}
-
-export function resetSettings() {
-  safeRemove(KEYS.settings);
-}
-
-export function loadHistory(): HistoryEntry[] {
-  const h = readJson<HistoryEntry[]>(KEYS.history);
-  return Array.isArray(h) ? h : [];
-}
-
-export function addHistory(e: HistoryEntry) {
-  const list = loadHistory().filter((x) => x.sessionId !== e.sessionId);
-  list.unshift(e);
-  safeSet(KEYS.history, JSON.stringify(list.slice(0, 200)));
-}
-
-export function clearHistory() {
-  safeRemove(KEYS.history);
 }
 
 export const loadMuted = () => safeGet(KEYS.muted) === '1';

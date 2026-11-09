@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { isRegistrationValid, KEYS, loadProgress, loadSession, saveProgress, startSession, validateRegistration } from '../lib/storage.ts';
-import { cloneDefaults, CLASSROOM_URL, exportSettingsJson, parseSettings, safeUrl } from '../lib/settings.ts';
+import { CLASSROOM_URL, SETTINGS, safeUrl } from '../lib/settings.ts';
 
 describe('Pendaftaran', () => {
   it('nama kosong / ruang sahaja tidak boleh mula', () => {
@@ -52,28 +52,13 @@ describe('Penyimpanan setempat', () => {
   });
 });
 
-describe('Tetapan guru', () => {
+describe('Tetapan permainan', () => {
   it('pautan Google Classroom lalai betul', () => {
     expect(CLASSROOM_URL).toBe('https://classroom.google.com/');
-    expect(cloneDefaults().classroomUrl).toBe('https://classroom.google.com/');
+    expect(SETTINGS.classroomUrl).toBe('https://classroom.google.com/');
   });
   it('hanya pautan http(s) diterima', () => {
     expect(safeUrl('javascript:alert(1)')).toBe(CLASSROOM_URL);
     expect(safeUrl('https://classroom.google.com/c/abc')).toBe('https://classroom.google.com/c/abc');
-  });
-  it('eksport → import JSON kekal sama', () => {
-    const s = cloneDefaults();
-    s.schoolName = 'SK UJIAN';
-    s.classes = ['4 Bestari', '4 Cemerlang'];
-    s.certificateMinMastery = 60;
-    const r = parseSettings(JSON.parse(exportSettingsJson(s)));
-    expect(r.ok).toBe(true);
-    expect(r.settings).toEqual(s);
-  });
-  it('import JSON tidak sah ditolak', () => {
-    expect(parseSettings(null).ok).toBe(false);
-    const s = cloneDefaults();
-    s.units[0].lafaz.blanks[0].distractors = ['x'];
-    expect(parseSettings(s).ok).toBe(false);
   });
 });

@@ -303,6 +303,7 @@ async function run() {
     await sp.evaluate(() => localStorage.clear());
     await sp.reload();
     await sp.waitForTimeout(2200);
+    check('Mod Guru telah dibuang daripada skrin utama', (await sp.getByText(/Mod Guru/i).count()) === 0);
     await sp.screenshot({ path: path.join(outDir, 'desktop-landing.png') });
     await sp.getByRole('button', { name: /MULA PENGEMBARAAN/ }).click();
     await sp.getByTestId('input-name').fill('Ali bin Abu');

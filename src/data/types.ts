@@ -28,11 +28,9 @@ export interface UnitContent {
   explanation: string;
   lafaz: { blanks: BlankSpec[] };
   meaningQ: MeaningSpec;
-  /** Rakaman bacaan; hanya dimainkan jika `audioVerified` ditanda oleh guru. */
+  /** Rakaman bacaan; hanya dimainkan jika `audioVerified` = true (rakaman disahkan guru). */
   audioUrl: string;
   audioVerified: boolean;
-  /** Guru telah menyemak lafaz & maksud unit ini. */
-  reviewed: boolean;
 }
 
 export interface Option {
